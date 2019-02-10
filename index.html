@@ -1,19 +1,674 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+<head>
+<title>Gemara Game - Marbitz Media</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Keywords" content="Gemara, gemara-game, Talmud, targum, Torah, loshon, lashon, chinuch, translate, yeshiva" />
+<meta name="Description" content="Free, on-line game designed to improve your grasp of Gemara vocabulary." />
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
+<!--<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">-->
+<link rel="stylesheet" href="https://marbitz.com/w3.css">
+<style>
+header {
+    background-color:red;
+    color:white;
+    text-align:left;
+    padding:5px;
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:50px;
+    width:100%;
+    float:left;
+    padding:5px;
+}
+section {
+<!--    width:350px; -->
+    float:left;
+    padding:100px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+footer {
+    background-color:red;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+</style>
+</head>
+<body>
+<header>
+<a href="https://marbitz.com">
+<h1>Marbitz.com</h1></a>
+</header>
+
+<nav>
+<a href="http://www.marbitz.com/midrash/"_top">Midrash</a> |
+<a href="http://www.marbitz.com/emunah/"_top">Project Emunah</a> |
+<a href="http://www.marbitz.com/royal" target="_top">Essays on Shmuel</a> |
+<a href="http://www.marbitz.com/yeshaya.html" target="_top">Essays on Yeshaya</a> |
+<a href="http://www.marbitz.com/essays.html"_top">Essays on Judaism</a> |
+<a href="http://www.marbitz.com/parnassa.html" target="_top">Working With Torah</a> |
+<a href="http://www.marbitz.com/accountable/" target="_top">Accountable</a> |
+<a href="http://www.marbitz.com/mikdash/" target="_top">Beis Hamidkash</a> |
+<a href="http://www.marbitz.com/gemara-game/" target="_top">Gemara Game</a> |
+<a href="http://www.marbitz.com/bookstore.html" target="_top">Bookstore</a> |
+<a href="mailto:office@marbitz.com">Speak to Us</a>
+
+</nav>
+
+<section>
+<h1 class="example_head"><b>The Gemara Game</b></h1>
+<big><big><b>Level One (beginner)</big></big></b>
+<br>
+<br>
+
+</div>
+
+<!--main text starts here:-->
+<table class="example_code" border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<h4><br>
+<script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+</script>
+
+<script language="javascript" type="text/javascript">
+ function playSound(soundfile) {
+ document.getElementById("dummy").innerHTML="<embed src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />";
+ }
+ </script>
+
+<SCRIPT LANGUAGE='JavaScript'>
+var mark="unknown";
+
+//points
+var right=0;
+var wrong=0;
+
+
+$(document).ready(function(){
+  $("p.marka").click(function(){
+if(answers[1]==correct[num]){
+mark="Correct!";
+playSound('apert.wav');
+right++;
+    $(this).css("background-color","yellow");
+setTimeout(function(){question()},1500);//next question   (a)
+}else{
+mark="incorrect! ("+correct[num]+")";
+playSound('wrong.wav');
+wrong++;
+    $(this).css("background-color","red");
+setTimeout(function(){question()},3500);//next question   (a)
+}
+    $(this).append("<b>"+mark+"</b>");
+  });
+});
+
+$(document).ready(function(){
+  $("p.markb").click(function(){
+if(answers[2]==correct[num]){
+mark="Correct!";
+playSound('apert.wav');
+right++;
+    $(this).css("background-color","yellow");
+setTimeout(function(){question()},1500);//next question  (b)
+}else{
+mark="incorrect! ("+correct[num]+")";
+playSound('wrong.wav');
+wrong++;
+    $(this).css("background-color","red");
+setTimeout(function(){question()},3500);//next question  (b)
+}
+    $(this).append("<b>"+mark+"</b>");
+  });
+});
+
+$(document).ready(function(){
+  $("p.markc").click(function(){
+if(answers[3]==correct[num]){
+mark="Correct!";
+playSound('apert.wav');
+right++;
+    $(this).css("background-color","yellow");
+setTimeout(function(){question()},1500);//next question  (c)
+}else{
+wrong++;
+mark="incorrect! ("+correct[num]+")";
+playSound('wrong.wav');
+    $(this).css("background-color","red");
+setTimeout(function(){question()},3500);//next question  (c)
+}
+    $(this).append("<b>"+mark+"</b>");
+
+  });
+});
+
+$(document).ready(function(){
+  $("p.markd").click(function(){
+if(answers[4]==correct[num]){
+mark="Correct!";
+playSound('apert.wav');
+right++;
+    $(this).css("background-color","yellow");
+setTimeout(function(){question()},1500);//next question
+
+}else{
+mark="incorrect! ("+correct[num]+")";
+playSound('wrong.wav');
+wrong++;
+    $(this).css("background-color","red");
+setTimeout(function(){question()},3500);//next question
+}
+    $(this).append("<b>"+mark+"</b>");
+  });
+});
+//array stuff
+/* JavaScript file Generated by
+ * Creativyst(tm) CSV converter
+ *   (www.creativyst.com)
+ * 
+ * (C) Copyright 2002-2003, Creativyst, Inc.
+ * 
+ * Permission is hereby granted to use,
+ * distribute, and change this file for any
+ * reason, provided this entire comment remains
+ * intact with the work.
+ * 
+ *
+*/
+
+/*JSCPragma:StartCompress
+*/
+
+var lsz = 58;
+
+var defintion = Array([lsz]);
+var correct = Array([lsz]);
+var wrong1 = Array([lsz]);
+var wrong2 = Array([lsz]);
+var wrong3 = Array([lsz]);
+
+defintion[0] = "however";
+correct[0] = "&#1488;&#1489;&#1500;";
+wrong1[0] = "&#1502;&#1492;&#1493;";
+wrong2[0] = "&#1513;&#1502;&#1488;";
+wrong3[0] = "&#1502;&#1513;&#1493;&#1501;";
+
+defintion[1] = "by the way";
+correct[1] = "&#1488;&#1490;&#1489;";
+wrong1[1] = "&#1502;&#1513;&#1493;&#1501;";
+wrong2[1] = "&#1491;&#1512;&#1498;";
+wrong3[1] = "&#1502;&#1505;&#1497;&#1500;&#1492;";
+
+defintion[2] = "on the contrary";
+correct[2] = "&#1488;&#1491;&#1512;&#1489;&#1488;";
+wrong1[2] = "&#1488;&#1497;&#1489;&#1506;&#1497; &#1500;&#1497;&#1492;";
+wrong2[2] = "&#1502;&#1504;&#1488; &#1492;&#1504;&#1497; &#1502;&#1497;&#1500;&#1497;";
+wrong3[2] = "&#1502;&#1500;&#1489;&#1512;";
+
+defintion[3] = "if so";
+correct[3] = "&#1488;&#1497; &#1492;&#1499;&#1497;";
+wrong1[3] = "&#1490;&#1493;&#1512;&#1501;";
+wrong2[3] = "&#1502;&#1492;&#1497;&#1499;&#1488; &#1514;&#1497;&#1514;&#1497;";
+wrong3[3] = "&#1502;&#1513;&#1493;&#1501;";
+
+defintion[4] = "impossible";
+correct[4] = "&#1488;&#1497; &#1488;&#1508;&#1513;&#1512;";
+wrong1[4] = "&#1488;&#1493;&#1511;&#1497;&#1501;";
+wrong2[4] = "&#1488;&#1508;&#1513;&#1512;";
+wrong3[4] = "&#1488;&#1493;&#1500;&#1497;";
+
+defintion[5] = "they had a question";
+correct[5] = "&#1488;&#1497;&#1489;&#1506;&#1497;&#1488; &#1500;&#1492;&#1493;";
+wrong1[5] = "&#1488;&#1497;&#1492;&#1493;";
+wrong2[5] = "&#1502;&#1504;&#1488; &#1492;&#1504;&#1497; &#1502;&#1497;&#1500;&#1497;";
+wrong3[5] = "&#1502;&#1511;&#1513;&#1497;&#1504;&#1503;";
+
+defintion[6] = "we could say";
+correct[6] = "&#1488;&#1497; &#1489;&#1506;&#1497;&#1514; &#1488;&#1497;&#1502;&#1488;";
+wrong1[6] = "&#1502;&#1513;&#1514;&#1492;";
+wrong2[6] = "&#1488;&#1502;&#1512;&#1497;&#1504;&#1503;";
+wrong3[6] = "&#1488;&#1493;&#1500;&#1497;";
+
+defintion[7] = "he";
+correct[7] = "&#1488;&#1497;&#1492;&#1493;";
+wrong1[7] = "&#1502;&#1502;&#1504;&#1493;";
+wrong2[7] = "&#1488;&#1493;&#1511;&#1497;&#1501;";
+wrong3[7] = "&#1492;&#1497;&#1488;";
+
+defintion[8] = "she";
+correct[8] = "&#1488;&#1497;&#1492;&#1497;";
+wrong1[8] = "&#1492;&#1493;&#1488;";
+wrong2[8] = "&#1502;&#1497;";
+wrong3[8] = "&#1502;&#1502;&#1504;&#1492;";
+
+defintion[9] = "if so";
+correct[9] = "&#1488;&#1497; &#1492;&#1499;&#1497;";
+wrong1[9] = "&#1492;&#1514;&#1501;";
+wrong2[9] = "&#1492;&#1499;&#1488;";
+wrong3[9] = "&#1500;&#1492;&#1499;&#1497;";
+
+defintion[10] = "there is";
+correct[10] = "&#1488;&#1497;&#1499;&#1488;";
+wrong1[10] = "&#1500;&#1497;&#1499;&#1492;";
+wrong2[10] = "&#1488;&#1508;&#1513;&#1512;";
+wrong3[10] = "&#1492;&#1514;&#1501;";
+
+defintion[11] = "he asked (from a mishna or beraissa)";
+correct[11] = "&#1488;&#1497;&#1514;&#1497;&#1489;&#1497;&#1492;";
+wrong1[11] = "&#1500;&#1492;&#1489;&#1491;&#1497;&#1500;";
+wrong2[11] = "&#1502;&#1508;&#1493;&#1512;&#1513;&#1514;";
+wrong3[11] = "&#1508;&#1500;&#1493;&#1490;&#1514;&#1488;";
+
+defintion[12] = "except";
+correct[12] = "&#1488;&#1500;&#1488;";
+wrong1[12] = "&#1502;&#1506;&#1493;&#1500;&#1492;";
+wrong2[12] = "&#1488;&#1495;&#1512;&#1497;&#1501;";
+wrong3[12] = "&#1502;&#1502;&#1504;&#1493;";
+
+defintion[13] = "unless";
+correct[13] = "&#1488;&#1500;&#1488; &#1488;&#1501; &#1499;&#1503;";
+wrong1[13] = "&#1488;&#1507; &#1506;&#1500; &#1508;&#1497;";
+wrong2[13] = "&#1488;&#1497;&#1504;&#1497;";
+wrong3[13] = "&#1502;&#1492;&#1504;&#1497;";
+
+defintion[14] = "according to";
+correct[14] = "&#1488;&#1500;&#1497;&#1489;&#1488;";
+wrong1[14] = "&#1500;&#1508;&#1504;&#1497;&#1501;";
+wrong2[14] = "&#1502;&#1502;&#1504;&#1493;";
+wrong3[14] = "&#1500;&#1508;&#1497;&#1499;&#1498;";
+
+defintion[15] = "even";
+correct[15] = "&#1488;&#1507;";
+wrong1[15] = "&#1492;&#1499;&#1497;";
+wrong2[15] = "&#1502;&#1492;&#1504;&#1497;";
+wrong3[15] = "&#1499;&#1503;";
+
+defintion[16] = "even though";
+correct[16] = "&#1488;&#1507; &#1506;&#1500; &#1490;&#1489;";
+wrong1[16] = "&#1502;&#1488;&#1497;&#1491;&#1498;";
+wrong2[16] = "&#1488;&#1508;&#1497;&#1500;&#1493;";
+wrong3[16] = "&#1488;&#1507;";
+
+defintion[17] = "even so";
+correct[17] = "&#1488;&#1508;&#1497;&#1500;&#1493; &#1492;&#1499;&#1497;";
+wrong1[17] = "&#1499;&#1498;";
+wrong2[17] = "&#1488;&#1508;&#1497;&#1500;&#1493;";
+wrong3[17] = "&#1488;&#1507; &#1506;&#1500; &#1490;&#1489;";
+
+defintion[18] = "possible";
+correct[18] = "&#1488;&#1508;&#1513;&#1512;";
+wrong1[18] = "&#1492;&#1493;&#1492; &#1488;&#1502;&#1497;&#1504;&#1488;";
+wrong2[18] = "&#1510;&#1512;&#1497;&#1499;&#1493;&#1514;&#1488;";
+wrong3[18] = "&#1488;&#1497; &#1488;&#1508;&#1513;&#1512;";
+
+defintion[19] = "without that";
+correct[19] = "&#1489;&#1500;&#1488;&#1493; &#1492;&#1499;&#1497;";
+wrong1[19] = "&#1489;&#1510;&#1497;&#1512;";
+wrong2[19] = "&#1489;&#1492;&#1491;&#1497;&#1488;";
+wrong3[19] = "&#1506;&#1500; &#1502;&#1504;&#1514;";
+
+defintion[20] = "it makes sense";
+correct[20] = "&#1489;&#1513;&#1500;&#1502;&#1488;";
+wrong1[20] = "&#1489;&#1492;&#1491;&#1497;&#1488;";
+wrong2[20] = "&#1491;&#1493;&#1511;&#1488;";
+wrong3[20] = "&#1489;&#1512;&#1497; &#1500;&#1497;";
+
+defintion[21] = "precisely";
+correct[21] = "&#1491;&#1493;&#1511;&#1488;";
+wrong1[21] = "&#1492;&#1500;&#1499;&#1498;";
+wrong2[21] = "&#1489;&#1512;&#1497; &#1500;&#1497;";
+wrong3[21] = "&#1491;&#1493;&#1499;&#1514;&#1488;";
+
+defintion[22] = "perhaps";
+correct[22] = "&#1491;&#1497;&#1500;&#1502;&#1488;";
+wrong1[22] = "&#1490;&#1489;&#1497;";
+wrong2[22] = "&#1489;&#1500;&#1488;&#1493; &#1492;&#1499;&#1497;";
+wrong3[22] = "&#1488;&#1497; &#1488;&#1508;&#1513;&#1512;";
+
+defintion[23] = "it already happened";
+correct[23] = "&#1491;&#1497;&#1506;&#1489;&#1491;";
+wrong1[23] = "&#1492;&#1497;&#1497;&#1504;&#1493;";
+wrong2[23] = "&#1490;&#1502;&#1497;&#1512;";
+wrong3[23] = "&#1500;&#1508;&#1504;&#1497;&#1501;";
+
+defintion[24] = "that";
+correct[24] = "&#1492;&#1492;&#1493;&#1488;";
+wrong1[24] = "&#1492;&#1497;&#1488;";
+wrong2[24] = "&#1492;&#1514;&#1501;";
+wrong3[24] = "&#1488;&#1500;&#1493;";
+
+defintion[25] = "I would have said";
+correct[25] = "&#1492;&#1493;&#1492; &#1488;&#1502;&#1497;&#1504;&#1488;";
+wrong1[25] = "&#1488;&#1497;&#1503; &#1510;&#1512;&#1497;&#1498; &#1500;&#1493;&#1502;&#1512;";
+wrong2[25] = "&#1492;&#1493;&#1492; &#1500;&#1497;&#1492;";
+wrong3[25] = "&#1493;&#1488;&#1501; &#1514;&#1488;&#1502;&#1512;";
+
+defintion[26] = "we were";
+correct[26] = "&#1492;&#1497;&#1497;&#1504;&#1493;";
+wrong1[26] = "&#1492;&#1497;&#1514;&#1488;";
+wrong2[26] = "&#1488;&#1504;&#1493;";
+wrong3[26] = "&#1499;&#1493;&#1500;&#1504;&#1493;";
+
+defintion[27] = "the halacha";
+correct[27] = "&#1492;&#1497;&#1500;&#1499;&#1514;&#1488;";
+wrong1[27] = "&#1493;&#1492;&#1514;&#1504;&#1497;&#1488;";
+wrong2[27] = "&#1492;&#1500;&#1497;&#1499;&#1492;";
+wrong3[27] = "&#1493;&#1491;&#1497;&#1503; &#1492;&#1493;&#1488;";
+
+defintion[28] = "therefore";
+correct[28] = "&#1492;&#1500;&#1499;&#1498;";
+wrong1[28] = "&#1496;&#1506;&#1502;&#1488;";
+wrong2[28] = "&#1495;&#1494;&#1497;&#1504;&#1503;";
+wrong3[28] = "&#1500;&#1508;&#1504;&#1497;";
+
+defintion[29] = "there";
+correct[29] = "&#1492;&#1514;&#1501;";
+wrong1[29] = "&#1496;&#1506;&#1502;&#1488;";
+wrong2[29] = "&#1492;&#1497;&#1499;&#1488;";
+wrong3[29] = "&#1492;&#1499;&#1488;";
+
+defintion[30] = "but the beraissa taught...";
+correct[30] = "&#1493;&#1492;&#1514;&#1504;&#1497;&#1488;";
+wrong1[30] = "&#1513;&#1504;&#1493;";
+wrong2[30] = "&#1493;&#1492;&#1514;&#1504;&#1503;";
+wrong3[30] = "&#1495;&#1494;&#1497;&#1504;&#1503;";
+
+defintion[31] = "all";
+correct[31] = "&#1499;&#1493;&#1500;&#1488;";
+wrong1[31] = "&#1499;&#1500;&#1497;&#1493;&#1503;";
+wrong2[31] = "&#1499;&#1502;&#1506;&#1496;";
+wrong3[31] = "&#1512;&#1493;&#1489;&#1501;";
+
+defintion[32] = "since";
+correct[32] = "&#1499;&#1497;&#1493;&#1503;";
+wrong1[32] = "&#1506;&#1491;&#1497;&#1497;&#1503;";
+wrong2[32] = "&#1492;&#1499;&#1497; &#1504;&#1502;&#1497;";
+wrong3[32] = "&#1496;&#1506;&#1502;&#1488;";
+
+defintion[33] = "that is to say";
+correct[33] = "&#1499;&#1500;&#1493;&#1502;&#1512;";
+wrong1[33] = "&#1500;&#1497;&#1495;&#1493;&#1513;";
+wrong2[33] = "&#1500;&#1488; &#1499;&#1500; &#1513;&#1499;&#1503;";
+wrong3[33] = "&#1489;&#1502;&#1492; &#1491;&#1489;&#1512;&#1497;&#1501; &#1488;&#1502;&#1493;&#1512;&#1497;&#1501;";
+
+defintion[34] = "not";
+correct[34] = "&#1500;&#1488;&#1493;";
+wrong1[34] = "&#1497;&#1500;&#1497;&#1507;";
+wrong2[34] = "&#1500;&#1497;&#1514;&#1497;";
+wrong3[34] = "&#1488;&#1497;&#1499;&#1488;";
+
+defintion[35] = "ideally";
+correct[35] = "&#1500;&#1499;&#1514;&#1495;&#1497;&#1500;&#1492;";
+wrong1[35] = "&#1488;&#1497;&#1514;&#1488;";
+wrong2[35] = "&#1495;&#1494;&#1493;&#1514;&#1488;";
+wrong3[35] = "&#1489;&#1491;&#1497;&#1506;&#1489;&#1491;";
+
+defintion[36] = "why";
+correct[36] = "&#1502;&#1488;&#1497;";
+wrong1[36] = "&#1502;&#1488;&#1497; &#1500;&#1502;&#1497;&#1502;&#1512;&#1488;";
+wrong2[36] = "&#1500;&#1502;&#1488;&#1497; &#1504;&#1508;&#1511;&#1488; &#1502;&#1497;&#1504;&#1488;";
+wrong3[36] = "&#1502;&#1492;";
+
+defintion[37] = "the one who says";
+correct[37] = "&#1502;&#1488;&#1503; &#1491;&#1488;&#1502;&#1512;";
+wrong1[37] = "&#1488;&#1500;&#1493; &#1491;&#1489;&#1512;&#1497;&#1501;";
+wrong2[37] = "&#1493;&#1488;&#1501; &#1514;&#1488;&#1502;&#1512;";
+wrong3[37] = "&#1497;&#1513; &#1500;&#1493;&#1502;&#1512;";
+
+defintion[38] = "immediately";
+correct[38] = "&#1502;&#1497;&#1491;";
+wrong1[38] = "&#1489;&#1497;&#1491;";
+wrong2[38] = "&#1502;&#1497;&#1500;&#1514;&#1488;";
+wrong3[38] = "&#1489;&#1493;&#1491;&#1488;&#1497;";
+
+defintion[39] = "statement";
+correct[39] = "&#1502;&#1497;&#1502;&#1512;&#1488;";
+wrong1[39] = "&#1489;&#1502;&#1492; &#1491;&#1489;&#1512;&#1497;&#1501; &#1488;&#1502;&#1493;&#1512;&#1497;&#1501;";
+wrong2[39] = "&#1505;&#1489;&#1512;&#1488;";
+wrong3[39] = "&#1502;&#1497;&#1500;&#1514;&#1488;";
+
+defintion[40] = "nevertheless";
+correct[40] = "&#1502;&#1499;&#1500; &#1502;&#1511;&#1493;&#1501;";
+wrong1[40] = "&#1500;&#1502;&#1497;&#1502;&#1512;&#1488;";
+wrong2[40] = "&#1502;&#1497;&#1500;&#1514;&#1488;";
+wrong3[40] = "&#1488;&#1497; &#1500;&#1488;&#1493;";
+
+defintion[41] = "automatically";
+correct[41] = "&#1502;&#1502;&#1497;&#1500;&#1488;";
+wrong1[41] = "&#1502;&#1497;&#1505;&#1514;&#1489;&#1512;&#1488;";
+wrong2[41] = "&#1502;&#1513;&#1499;&#1495;&#1514; &#1500;&#1492;";
+wrong3[41] = "&#1500;&#1499;&#1514;&#1495;&#1497;&#1500;&#1492;";
+
+defintion[42] = "from where (do we know)";
+correct[42] = "&#1502;&#1504;&#1497;&#1497;&#1503;";
+wrong1[42] = "&#1502;&#1492;&#1514;&#1501;";
+wrong2[42] = "&#1502;&#1488;&#1497;&#1494;&#1492;";
+wrong3[42] = "&#1502;&#1497;&#1500;&#1514;&#1488;";
+
+defintion[43] = "because";
+correct[43] = "&#1502;&#1513;&#1493;&#1501;";
+wrong1[43] = "&#1502;&#1513;&#1492;&#1493;";
+wrong2[43] = "&#1508;&#1497;&#1512;&#1495;&#1488;";
+wrong3[43] = "&#1500;&#1508;&#1504;&#1497;&#1501;";
+
+defintion[44] = "implies";
+correct[44] = "&#1502;&#1513;&#1502;&#1506;";
+wrong1[44] = "&#1502;&#1513;&#1493;&#1501;";
+wrong2[44] = "&#1513;&#1502;&#1506; &#1502;&#1497;&#1504;&#1488;";
+wrong3[44] = "&#1488;&#1493;&#1500;&#1497;";
+
+defintion[45] = "even though";
+correct[45] = "&#1504;&#1492;&#1497;";
+wrong1[45] = "&#1488;&#1497; &#1500;&#1488;&#1493;";
+wrong2[45] = "&#1488;&#1508;&#1497;&#1500;&#1493; &#1492;&#1499;&#1497;";
+wrong3[45] = "&#1504;&#1511;&#1497;";
+
+defintion[46] = "let us say";
+correct[46] = "&#1504;&#1497;&#1502;&#1488;";
+wrong1[46] = "&#1504;&#1497;&#1495;&#1493;&#1513;";
+wrong2[46] = "&#1502;&#1497;&#1500;&#1514;&#1488;";
+wrong3[46] = "&#1493;&#1488;&#1501; &#1514;&#1488;&#1502;&#1512;";
+
+defintion[47] = "the final part";
+correct[47] = "&#1505;&#1497;&#1508;&#1488;";
+wrong1[47] = "&#1488;&#1495;&#1512;&#1514;";
+wrong2[47] = "&#1492;&#1514;&#1501;";
+wrong3[47] = "&#1505;&#1493;&#1507; &#1505;&#1493;&#1507;";
+
+defintion[48] = "you might think";
+correct[48] = "&#1505;&#1500;&#1511;&#1488; &#1491;&#1506;&#1514;&#1498;";
+wrong1[48] = "&#1496;&#1506;&#1502;&#1497;&#1488;";
+wrong2[48] = "&#1502;&#1491;&#1506;&#1514;&#1488; &#1491;&#1497;&#1491;&#1498;";
+wrong3[48] = "&#1502;&#1497; &#1505;&#1489;&#1512;&#1514;";
+
+defintion[49] = "ask";
+correct[49] = "&#1508;&#1512;&#1497;&#1498;";
+wrong1[49] = "&#1504;&#1508;&#1511;&#1488; &#1502;&#1497;&#1504;&#1492;";
+wrong2[49] = "&#1502;&#1513;&#1492;&#1493;";
+wrong3[49] = "&#1511;&#1493;&#1513;&#1497;&#1488;";
+
+defintion[50] = "it is obvious";
+correct[50] = "&#1508;&#1513;&#1497;&#1496;&#1488;";
+wrong1[50] = "&#1491;&#1493;&#1511;&#1488;";
+wrong2[50] = "&#1508;&#1497;&#1512;&#1495;&#1488;";
+wrong3[50] = "&#1508;&#1493;&#1513;&#1496;";
+
+defintion[51] = "it is necessary";
+correct[51] = "&#1510;&#1512;&#1497;&#1499;&#1488;";
+wrong1[51] = "&#1504;&#1497;&#1495;&#1493;&#1513;";
+wrong2[51] = "&#1500;&#1499;&#1514;&#1495;&#1497;&#1500;&#1492;";
+wrong3[51] = "&#1488;&#1497;&#1489;&#1506;&#1497;&#1488; &#1500;&#1492;&#1493;";
+
+defintion[52] = "teaches us";
+correct[52] = "&#1511;&#1488; &#1502;&#1513;&#1502;&#1506; &#1500;&#1503;";
+wrong1[52] = "&#1502;&#1492;&#1497;&#1499;&#1488; &#1514;&#1497;&#1514;&#1497;";
+wrong2[52] = "&#1502;&#1497;&#1504;&#1497;&#1488;";
+wrong3[52] = "&#1497;&#1500;&#1508;&#1493;&#1514;&#1488;";
+
+defintion[53] = "the first part";
+correct[53] = "&#1512;&#1497;&#1513;&#1488;";
+wrong1[53] = "&#1512;&#1513;&#1506;";
+wrong2[53] = "&#1500;&#1499;&#1514;&#1495;&#1497;&#1500;&#1492;";
+wrong3[53] = "&#1502;&#1511;&#1491;&#1497;&#1501;";
+
+defintion[54] = "we derive from this";
+correct[54] = "&#1513;&#1502;&#1506; &#1502;&#1497;&#1504;&#1492;";
+wrong1[54] = "&#1508;&#1513;&#1497;&#1496;&#1488;";
+wrong2[54] = "&#1511;&#1497;&#1501; &#1500;&#1492;&#1493;";
+wrong3[54] = "&#1502;&#1492;&#1497;&#1499;&#1488; &#1514;&#1497;&#1514;&#1497;";
+
+defintion[55] = "three";
+correct[55] = "&#1514;&#1500;&#1514;";
+wrong1[55] = "&#1512;&#1497;&#1489;&#1493;&#1497;";
+wrong2[55] = "&#1495;&#1491;";
+wrong3[55] = "&#1514;&#1512;&#1497;";
+
+defintion[56] = "both of them";
+correct[56] = "&#1514;&#1512;&#1493;&#1497;&#1497;&#1492;&#1493;";
+wrong1[56] = "&#1489;&#1497;&#1504;&#1497;&#1492;&#1501;";
+wrong2[56] = "&#1499;&#1493;&#1500;&#1501;";
+wrong3[56] = "&#1514;&#1500;&#1514;";
+
+//end of arrays
+
+var onthefly=new Array();
+var answers=new Array();
+var num=Math.floor(Math.random()*57);
+
+function question(){
+
+$(document).ready(function(){
+    $("p.marka").css("background-color","#ADD67A");
+    $("p.markb").css("background-color","#ADD67A");
+    $("p.markc").css("background-color","#ADD67A");
+    $("p.markd").css("background-color","#ADD67A");
+});
+
+num = Math.floor(Math.random()*57);//rand # 0 to 57
+
+onthefly[0]=defintion[num];
+onthefly[1]=correct[num];
+onthefly[2]=wrong1[num];
+onthefly[3]=wrong2[num];
+onthefly[4]=wrong3[num];
+
+while((a==b)||(a==c)||(a==d)||(b==c)||(b==d)||(c==d)){
+var a = Math.floor(Math.random()*4)+1;//rand # 1,2,3,4
+var b = Math.floor(Math.random()*4)+1;//rand # 1,2,3,4
+var c = Math.floor(Math.random()*4)+1;//rand # 1,2,3,4
+var d = Math.floor(Math.random()*4)+1;//rand # 1,2,3,4
+}
+answers[a]=onthefly[1];
+answers[b]=onthefly[2];
+answers[c]=onthefly[3];
+answers[d]=onthefly[4];
+
+$(document).ready(function(){//question
+    $(".quest").html("<H2>Translate '"+onthefly[0]+"'</H2>");
+  });
+
+
+$(document).ready(function(){
+    $(".marka").html("<div class='marka' ><h3>"+answers[1]+"</div>");
+  });
+$(document).ready(function(){
+    $(".markb").html("<div class='markb' ><h3>"+answers[2]+"</div>");
+  });
+$(document).ready(function(){
+    $(".markc").html("<div class='markc' ><h3>"+answers[3]+"</div>");
+  });
+$(document).ready(function(){
+    $(".markd").html("<div class='markd' ><h3>"+answers[4]+"</div>");
+  });
+
+$(document).ready(function(){
+    $(".click").html("<h3 class='rightwrong'>choose one of the above</h3>");
+  });
+$(document).ready(function(){
+    $(".score").html("<h4>score = "+right+"/"+(wrong+right)+"</h4>");
+  });
+$(document).ready(function(){
+ if((wrong+right)==25)
+  displayScore();
+  });
+                            }//end of question function
+
+         function displayScore(){
+$(document).ready(function(){//question
+if(right<11){
+    $(".quest").html("<H2>That's a good start. How about heading back to the Gemara Game's main page for another shot?</H2>");
+}else if(right>10&&right<21){
+    $(".quest").html("<H2>Pretty good! Would you like to go back to the Gemara Game's main page and give it another try?</H2>");
+}else if(right>19&&right<25){
+    $(".quest").html("<H2>Great! You could go back to the Gemara Game's main page to try to do even better or select a higher level.</H2>");
+}else if(right==25){
+    $(".quest").html("<H2>Excellent! You're ready for a higher level</H2>");
+
+}//end if's
+  });
+
+$(document).ready(function(){
+    $(".marka").html("");
+  });
+$(document).ready(function(){
+    $(".markb").html("");
+  });
+$(document).ready(function(){
+    $(".markc").html("");
+  });
+$(document).ready(function(){
+    $(".markd").html("");
+  });
+
+$(document).ready(function(){
+    $(".click").html("");
+  });
+}//end of displayScore
+
+$(document).ready(function(){
+question();//on load start game
+  });
+
+ 
+</SCRIPT>
+</head>
+
+
+<BODY><!--bgcolor="#D9CC57"-->
+
+<span id="dummy"></span><!--for sound effects bgcolor="#D9CC57"-->
+
+<h2 class='quest'></h2>
+
+<div id="menu" style="height:200px;width:300px;float:left;">
+<span style="cursor:pointer"><p class='marka'></p></span>
+<span style="cursor:pointer"><p class='markb'></p>
+<span style="cursor:pointer"><p class='markc'></p>
+<span style="cursor:pointer"><p class='markd'></p>
+<h3 class='click'></h3>
+</div>
+
+<div id="buffer" style="height:200px;width:40px;float:left;">
+
+</div>
+
+<div id="click on one" style="height:200px;width:300px;float:left;">
+<h3 class='score'></h3>
+
+</div>
+
+<br>
+</section>
+
+
+</body>
 </html>
+
+
